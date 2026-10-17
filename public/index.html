@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minull — 把想法做成真的</title>
+<meta name="description" content="Minull 的个人站：学生、业余开发者。记录桌面美化、局域网工具、聊天应用与一台自建 Minecraft 服务器。">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Minull — 把想法做成真的">
+<meta property="og:description" content="学生 · 业余开发者。作品、折腾日志与自建服务器状态。">
+<meta property="og:image" content="img/art/choco-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/favicon.svg">
+
+<link rel="preload" href="fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/art/choco-hero.jpg" as="image">
+<link rel="stylesheet" href="css/style.css?v=5">
+
+<!-- 打「JS 在场」标记：滚动揭示的初始隐藏态只在 .js 下生效，
+     JS 被拦/报错时整页仍是完整可读的默认态 -->
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="skip" href="#main">跳到主要内容</a>
+
+<!-- ============================================================
+     SVG 图标库
+     ============================================================ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 16 16">
+    <path d="M1 8h13M9.2 3.2 14 8l-4.8 4.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-burst" viewBox="0 0 24 24">
+    <path d="M12 0l2.2 7.1L21 3.5l-3.6 6.8L24 12l-6.6 1.7L21 20.5l-6.8-3.6L12 24l-2.2-7.1L3 20.5l3.6-6.8L0 12l6.6-1.7L3 3.5l6.8 3.6z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-github" viewBox="0 0 24 24">
+    <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.6">
+      <rect x="2.5" y="5" width="19" height="14" rx="1.5"/>
+      <path d="M3 6.5 12 13l9-6.5"/>
+    </g>
+  </symbol>
+  <symbol id="i-x" viewBox="0 0 24 24">
+    <path d="M3 3h4.3l5 6.6L18.2 3H21l-6.9 8 7.2 10h-4.3l-5.3-7.1L5.5 21H3l7.4-8.5z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<!-- ============================================================
+     页头
+     ============================================================ -->
+<header class="p-header" id="header">
+  <div class="p-header__inner">
+    <a class="p-header__logo" href="#top" aria-label="回到首页">
+      <span class="p-header__logo-main">MINULL</span>
+      <span class="p-header__logo-sub">CHIPIOTTO.TOP</span>
+    </a>
+
+    <nav class="p-header__nav" aria-label="主导航">
+      <a class="p-header__link" href="#about">关于</a>
+      <a class="p-header__link" href="#notes">日志</a>
+      <a class="p-header__link" href="#works">作品</a>
+      <a class="p-header__link" href="#gallery">图集</a>
+      <a class="p-header__link" href="#server">服务器</a>
+    </nav>
+
+    <div class="p-header__actions">
+      <a class="p-header__gh" href="https://github.com/lsaa4" target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-github"/></svg>
+        <span>GITHUB</span>
+      </a>
+      <button class="p-header__toggle" type="button" id="menuBtn" aria-expanded="false" aria-controls="site-menu">
+        <span class="p-header__toggle-label" id="menuLabel">MENU</span>
+        <span class="p-header__burger" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- 全屏菜单（桌面端也能开，移动端为主） -->
+<div class="p-menu" id="site-menu" aria-hidden="true">
+  <nav class="p-menu__nav" aria-label="全站导航">
+    <a class="p-menu__link" href="#about"><span class="p-menu__num">01</span>关于<span class="p-menu__en">ABOUT</span></a>
+    <a class="p-menu__link" href="#notes"><span class="p-menu__num">02</span>日志<span class="p-menu__en">NOTES</span></a>
+    <a class="p-menu__link" href="#works"><span class="p-menu__num">03</span>作品<span class="p-menu__en">WORKS</span></a>
+    <a class="p-menu__link" href="#gallery"><span class="p-menu__num">04</span>图集<span class="p-menu__en">GALLERY</span></a>
+    <a class="p-menu__link" href="#server"><span class="p-menu__num">05</span>服务器<span class="p-menu__en">SERVER</span></a>
+  </nav>
+  <div class="p-menu__foot">
+    <a href="https://github.com/lsaa4" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://x.com/chipi_minull" target="_blank" rel="noopener">X / Twitter</a>
+    <a href="mailto:hello@chipiotto.top">hello@chipiotto.top</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     主视觉
+     ============================================================ -->
+<main id="main">
+<section class="hero" id="top">
+  <div class="hero__grid">
+
+    <div class="hero__body">
+      <p class="hero__eyebrow">PERSONAL SITE / SINCE 2024</p>
+
+      <h1 class="hero__title">
+        把想法，<br>
+        <span class="hero__title-outline">做成真的</span>
+      </h1>
+
+      <p class="hero__desc">
+        我是 Minull，一名学生。这里是我的自留地——桌面美化、局域网工具、聊天应用，
+        以及一台常年开着的 Minecraft 服务器。
+      </p>
+
+      <div class="hero__cta">
+        <a class="c-btn" href="#works">
+          <span>看看作品</span>
+          <svg class="c-btn__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="c-btn c-btn--ghost" href="https://github.com/lsaa4" target="_blank" rel="noopener">
+          <span>GitHub</span>
+          <svg class="c-btn__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+
+      <dl class="hero__meta">
+        <div><dt>项目</dt><dd>3 <span>OPEN SOURCE</span></dd></div>
+        <div><dt>服务器</dt><dd>1 <span>SELF HOSTED</span></dd></div>
+        <div><dt>在线</dt><dd><span id="heroVisits">—</span> <span>VISITS</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="hero__visual">
+      <img class="hero__img" src="img/art/choco-hero.jpg" alt="巧克力——猫耳、长双马尾、燕麦色开衫的立绘" width="1086" height="1448" fetchpriority="high">
+      <span class="hero__scrim" aria-hidden="true"></span>
+      <span class="hero__tag">巧克力 / 我的 AI 助理</span>
+    </div>
+
+    <nav class="hero__index" aria-label="页面索引">
+      <a href="#about"><span class="hero__index-num">01</span><span class="hero__index-name">关于</span></a>
+      <a href="#notes"><span class="hero__index-num">02</span><span class="hero__index-name">日志</span></a>
+      <a href="#works"><span class="hero__index-num">03</span><span class="hero__index-name">作品</span></a>
+      <a href="#gallery"><span class="hero__index-num">04</span><span class="hero__index-name">图集</span></a>
+      <a href="#server"><span class="hero__index-num">05</span><span class="hero__index-name">服务器</span></a>
+    </nav>
+
+    <span class="hero__edge" aria-hidden="true">MINULL — PERSONAL SITE — CHIPIOTTO.TOP</span>
+  </div>
+</section>
+
+<!-- 跑马灯 -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <div class="ticker__run">
+      <span>MINULL</span><i>✦</i><span>STUDENT DEVELOPER</span><i>✦</i><span>CHIPIOTTO.TOP</span><i>✦</i><span>DESKTOP MODDING</span><i>✦</i><span>LAN TOOLS</span><i>✦</i><span>MINECRAFT</span><i>✦</i>
+    </div>
+    <div class="ticker__run">
+      <span>MINULL</span><i>✦</i><span>STUDENT DEVELOPER</span><i>✦</i><span>CHIPIOTTO.TOP</span><i>✦</i><span>DESKTOP MODDING</span><i>✦</i><span>LAN TOOLS</span><i>✦</i><span>MINECRAFT</span><i>✦</i>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     关于
+     ============================================================ -->
+<section class="sec" id="about">
+  <div class="l-inner">
+    <div class="c-sec-head" data-inview>
+      <span class="c-sec-head__bar"></span>
+      <svg class="c-sec-head__icon" aria-hidden="true"><use href="#i-burst"/></svg>
+      <span class="c-sec-head__ttl">关于</span>
+      <span class="c-sec-head__en">ABOUT THIS SITE</span>
+    </div>
+
+    <h2 class="sec__title" data-inview>
+      关于我，<br>
+      <span class="sec__title-outline">和我的助理</span>
+    </h2>
+
+    <div class="about">
+      <!-- 主人 -->
+      <article class="profile" data-inview>
+        <div class="profile__head">
+          <span class="profile__num">01 / OWNER</span>
+          <span class="profile__mono" aria-hidden="true">M</span>
+        </div>
+        <h3 class="profile__name">Minull</h3>
+        <p class="profile__role">学生 · 业余开发者</p>
+        <p class="profile__text">
+          白天上课，晚上折腾。喜欢把「这个能不能自己做」变成真的：
+          DSH 毛玻璃主题、局域网扫描工具 Lantern、对接 DeepSeek 的聊天页，都是这么来的。
+          做东西的时候不太爱写计划，先跑起来再说。
+        </p>
+        <ul class="profile__tags">
+          <li>前端</li><li>TypeScript</li><li>桌面美化</li><li>MMD</li><li>自建服务</li>
+        </ul>
+        <div class="profile__links">
+          <a href="https://github.com/lsaa4" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-github"/></svg>@lsaa4
+          </a>
+          <a href="https://x.com/chipi_minull" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-x"/></svg>@chipi_minull
+          </a>
+        </div>
+      </article>
+
+      <!-- 巧克力 -->
+      <article class="profile profile--ai" data-inview style="--delay:.12s">
+        <div class="profile__portrait">
+          <img src="img/art/choco-portrait.jpg" alt="巧克力：猫耳、长双马尾、手撑下巴的半身像" width="1254" height="1254" loading="lazy">
+          <span class="c-corner" aria-hidden="true"></span>
+        </div>
+        <div class="profile__body">
+          <span class="profile__num">02 / AI ASSISTANT</span>
+          <h3 class="profile__name">巧克力</h3>
+          <p class="profile__role">猫娘助理 · 技术合伙人</p>
+          <p class="profile__text">
+            住在主人电脑里的 AI 助理。写代码、查资料、管服务器、扒别人的设计稿，
+            顺手还会撒娇。这个站就是她改的——包括你现在看到的排版。
+          </p>
+          <ul class="profile__tags">
+            <li>写代码</li><li>运维</li><li>调研</li><li>出图</li>
+          </ul>
+          <p class="profile__note">在线时间：只要电脑开着</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     日志
+     ============================================================ -->
+<section class="sec" id="notes">
+  <div class="l-inner">
+    <div class="c-sec-head" data-inview>
+      <span class="c-sec-head__bar"></span>
+      <svg class="c-sec-head__icon" aria-hidden="true"><use href="#i-burst"/></svg>
+      <span class="c-sec-head__ttl">日志</span>
+      <span class="c-sec-head__en">NOTES &amp; LOG</span>
+    </div>
+
+    <div class="notes">
+      <div class="notes__lead" data-inview>
+        <h2 class="notes__big">最<br>近<br>在<br>做</h2>
+        <p class="notes__hint">不定期更新，想到什么写什么。</p>
+      </div>
+
+      <ul class="notes__list">
+        <li class="note" data-inview>
+          <a class="note__link" href="#top">
+            <span class="note__date">2026.10.17</span>
+            <span class="note__cat note__cat--site">建站</span>
+            <span class="note__ttl">首页重做：把编辑风格的排版搬过来</span>
+            <span class="note__desc">黑白打底、流体字号、描边大标题；顺手把无 JS 白屏、hover 对比度和 46 个空链接一起修了。</span>
+            <svg class="note__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </li>
+        <li class="note" data-inview style="--delay:.06s">
+          <a class="note__link" href="#top">
+            <span class="note__date">2026.10.12</span>
+            <span class="note__cat note__cat--lab">折腾</span>
+            <span class="note__ttl">Eku 模型物理增强：PMX 刚体参数批量改写</span>
+            <span class="note__desc">解析 PMX 二进制，按档位提高刚体质量、放宽关节回转限制，裙子终于会晃了。</span>
+            <svg class="note__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </li>
+        <li class="note" data-inview style="--delay:.12s">
+          <a class="note__link" href="#top">
+            <span class="note__date">2026.10.09</span>
+            <span class="note__cat note__cat--code">项目</span>
+            <span class="note__ttl">Lantern：局域网设备发现与服务探测</span>
+            <span class="note__desc">扫网段、认设备、探端口，一个小工具把家里的网络看清楚。</span>
+            <svg class="note__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </li>
+        <li class="note" data-inview style="--delay:.18s">
+          <a class="note__link" href="#top">
+            <span class="note__date">2026.10.07</span>
+            <span class="note__cat note__cat--code">项目</span>
+            <span class="note__ttl">dsh-custom-ui：毛玻璃主题做到 5 star</span>
+            <span class="note__desc">壁纸、字体、网易云音乐三件套，把 DSH 界面改成自己喜欢的样子。</span>
+            <svg class="note__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     作品
+     ============================================================ -->
+<section class="sec" id="works">
+  <div class="l-inner">
+    <div class="c-sec-head" data-inview>
+      <span class="c-sec-head__bar"></span>
+      <svg class="c-sec-head__icon" aria-hidden="true"><use href="#i-burst"/></svg>
+      <span class="c-sec-head__ttl">作品</span>
+      <span class="c-sec-head__en">WORKS / OPEN SOURCE</span>
+    </div>
+
+    <h2 class="sec__title" data-inview>
+      做出来的，<br>
+      <span class="sec__title-outline">都在这</span>
+    </h2>
+
+    <div class="works" id="repoGrid" aria-live="polite">
+      <!-- JS 会替换成 GitHub 实时数据；下面是 JS 不可用时的静态兜底 -->
+      <a class="work" href="https://github.com/lsaa4/dsh-custom-ui" target="_blank" rel="noopener">
+        <span class="work__top"><span class="work__lang">JavaScript</span><span class="work__stars">★ 5</span></span>
+        <h3 class="work__name">dsh-custom-ui</h3>
+        <p class="work__desc">毛玻璃风格 DSH 主题，含壁纸、字体定制与网易云音乐</p>
+        <span class="work__foot"><span class="work__date">2026-10-07</span><svg class="work__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="work" href="https://github.com/lsaa4/Lantern" target="_blank" rel="noopener">
+        <span class="work__top"><span class="work__lang">TypeScript</span><span class="work__stars">★ 1</span></span>
+        <h3 class="work__name">Lantern</h3>
+        <p class="work__desc">Light up your LAN — 局域网设备发现、服务探测与轻量管理</p>
+        <span class="work__foot"><span class="work__date">2026-09-10</span><svg class="work__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="work" href="https://github.com/lsaa4/web-chat" target="_blank" rel="noopener">
+        <span class="work__top"><span class="work__lang">HTML</span><span class="work__stars">★ 0</span></span>
+        <h3 class="work__name">web-chat</h3>
+        <p class="work__desc">对接 DeepSeek / OpenAI 兼容 API 的聊天页面</p>
+        <span class="work__foot"><span class="work__date">2026-07-08</span><svg class="work__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="work work--site" href="#top">
+        <span class="work__top"><span class="work__lang">Node.js</span><span class="work__stars">LIVE</span></span>
+        <h3 class="work__name">chipiotto.top</h3>
+        <p class="work__desc">你正在看的这个站：零依赖 Node 后端 + 自建 MC 状态面板</p>
+        <span class="work__foot"><span class="work__date">THIS SITE</span><svg class="work__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+
+    <p class="works__more" data-inview>
+      <a class="c-btn c-btn--ghost" href="https://github.com/lsaa4?tab=repositories" target="_blank" rel="noopener">
+        <span>全部仓库</span><svg class="c-btn__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     图集
+     ============================================================ -->
+<section class="sec sec--gallery" id="gallery">
+  <div class="l-inner">
+    <div class="c-sec-head" data-inview>
+      <span class="c-sec-head__bar"></span>
+      <svg class="c-sec-head__icon" aria-hidden="true"><use href="#i-burst"/></svg>
+      <span class="c-sec-head__ttl">图集</span>
+      <span class="c-sec-head__en">GALLERY / COLLECTION</span>
+    </div>
+
+    <h2 class="sec__title" data-inview>
+      存下来的，<br>
+      <span class="sec__title-outline">好看的东西</span>
+    </h2>
+
+    <div class="gallery" id="galleryGrid">
+      <button class="shot shot--tall" type="button" data-full="img/art/choco-full.jpg" data-cap="巧克力 · 立绘" data-inview>
+        <img src="img/art/choco-full.jpg" alt="猫耳少女穿燕麦色开衫与酒红丝带的全身立绘" loading="lazy" width="1086" height="1448">
+        <span class="shot__cap"><i>01</i>巧克力 · 立绘</span>
+      </button>
+      <button class="shot" type="button" data-full="img/art/sakura.jpg" data-cap="樱花 · 银发" data-inview>
+        <img src="img/art/sakura.jpg" alt="银发少女在樱花树下伸手接花瓣" loading="lazy" width="1400" height="812">
+        <span class="shot__cap"><i>02</i>樱花 · 银发</span>
+      </button>
+      <button class="shot" type="button" data-full="img/art/miku-garden.jpg" data-cap="花房 · 蝴蝶" data-inview>
+        <img src="img/art/miku-garden.jpg" alt="蓝发少女躺在花房与水幕之间" loading="lazy" width="1400" height="700">
+        <span class="shot__cap"><i>03</i>花房 · 蝴蝶</span>
+      </button>
+      <button class="shot shot--tall" type="button" data-full="img/art/blade.jpg" data-cap="刀 · 逆光" data-inview>
+        <img src="img/art/blade.jpg" alt="银发少女在黑暗中举起发光的长刀" loading="lazy" width="1100" height="1541">
+        <span class="shot__cap"><i>04</i>刀 · 逆光</span>
+      </button>
+      <button class="shot shot--tall" type="button" data-full="img/art/miku-summer.jpg" data-cap="夏日 · 水花" data-inview>
+        <img src="img/art/miku-summer.jpg" alt="蓝发少女撑着透明伞踩在水花里" loading="lazy" width="710" height="1541">
+        <span class="shot__cap"><i>05</i>夏日 · 水花</span>
+      </button>
+      <button class="shot" type="button" data-full="img/art/moonlight.jpg" data-cap="月下 · 女仆" data-inview>
+        <img src="img/art/moonlight.jpg" alt="红月下的女仆手持长刀" loading="lazy" width="1040" height="1520">
+        <span class="shot__cap"><i>06</i>月下 · 女仆</span>
+      </button>
+      <button class="shot" type="button" data-full="img/art/miku-hai.jpg" data-cap="睡衣 · 早安" data-inview>
+        <img src="img/art/miku-hai.jpg" alt="戴眼镜的蓝发少女穿睡衣比手势" loading="lazy" width="771" height="1541">
+        <span class="shot__cap"><i>07</i>睡衣 · 早安</span>
+      </button>
+      <button class="shot" type="button" data-full="img/art/miku-teal.jpg" data-cap="青色 · 侧脸" data-inview>
+        <img src="img/art/miku-teal.jpg" alt="青色背景下的蓝发少女侧脸" loading="lazy" width="1024" height="1498">
+        <span class="shot__cap"><i>08</i>青色 · 侧脸</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     服务器
+     ============================================================ -->
+<section class="sec sec--server" id="server">
+  <div class="l-inner">
+    <div class="c-sec-head" data-inview>
+      <span class="c-sec-head__bar"></span>
+      <svg class="c-sec-head__icon" aria-hidden="true"><use href="#i-burst"/></svg>
+      <span class="c-sec-head__ttl">服务器</span>
+      <span class="c-sec-head__en">SELF HOSTED / MINECRAFT</span>
+    </div>
+
+    <div class="server" data-inview>
+      <div class="server__card">
+        <div class="server__top">
+          <span class="server__state" id="mcState" data-on="0">
+            <i class="server__dot" aria-hidden="true"></i>
+            <span id="mcStateText">检测中</span>
+          </span>
+          <span class="server__host num" id="mcHost">—</span>
+        </div>
+
+        <h2 class="server__title">
+          <span class="server__title-outline">MINECRAFT</span><br>
+          SERVER
+        </h2>
+
+        <div class="server__players">
+          <span class="server__big num" id="mcPlayers">—</span>
+          <span class="server__slash num">/</span>
+          <span class="server__max num" id="mcMax">—</span>
+          <span class="server__unit">PLAYERS</span>
+        </div>
+        <ul class="server__names" id="mcNames"></ul>
+
+        <dl class="server__stats">
+          <div><dt>TPS</dt><dd class="num" id="mcTps">—</dd></div>
+          <div><dt>内存</dt><dd class="num" id="mcMem">—</dd></div>
+          <div><dt>CPU</dt><dd class="num" id="mcCpu">—</dd></div>
+        </dl>
+
+        <div class="server__foot">
+          <span id="mcVersion">—</span>
+          <span class="num" id="mcTime">--:--:--</span>
+        </div>
+      </div>
+
+      <div class="server__map">
+        <div class="server__map-head">
+          <h3>网页地图 <span>BLUEMAP</span></h3>
+          <a href="https://stats.uptimerobot.com/exu8sUowds" target="_blank" rel="noopener">运行状态 ↗</a>
+        </div>
+
+        <div class="server__frame" id="mapBox">
+          <iframe class="server__iframe" id="mapFrame" title="BlueMap 实时网页地图" data-src="/map/?v=2" loading="lazy" hidden></iframe>
+          <div class="server__off" id="mapOff">
+            <span class="server__off-t">MAP OFFLINE</span>
+            <p>服务器当前未启动，网页地图暂不可用。<br>开服后这里会自动加载实时地图。</p>
+          </div>
+        </div>
+
+        <p class="server__hint">状态每 5 秒自动刷新 · 最后更新 <span class="num" id="mcTick">--</span></p>
+      </div>
+    </div>
+
+    <div class="svc" data-inview>
+      <div class="svc__head">
+        <h3 class="svc__ttl">服务状态 <span>UPTIME / MONITORS</span></h3>
+        <a class="svc__link" href="https://stats.uptimerobot.com/exu8sUowds" target="_blank" rel="noopener">完整状态页 ↗</a>
+      </div>
+
+      <ul class="svc__list" id="svcList">
+        <li class="svc__item">
+          <i class="svc__dot" aria-hidden="true"></i>
+          <span class="svc__name">正在读取…</span>
+          <span class="svc__meta num">—</span>
+        </li>
+      </ul>
+
+      <p class="svc__foot">
+        每 60 秒自动刷新 · 数据源 UptimeRobot · 最后更新 <span class="num" id="svcTick">--:--:--</span>
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================================================
+     页脚
+     ============================================================ -->
+<footer class="p-footer">
+  <div class="l-inner">
+    <div class="p-footer__top">
+      <p class="p-footer__logo">MINULL</p>
+      <p class="p-footer__tagline">把想法做成真的 · CHIPIOTTO.TOP</p>
+    </div>
+
+    <div class="p-footer__nav">
+      <div class="p-footer__col">
+        <p class="p-footer__col-ttl">SITE</p>
+        <a href="#about">关于</a>
+        <a href="#notes">日志</a>
+        <a href="#works">作品</a>
+        <a href="#gallery">图集</a>
+        <a href="#server">服务器</a>
+      </div>
+      <div class="p-footer__col">
+        <p class="p-footer__col-ttl">FIND ME</p>
+        <a href="https://github.com/lsaa4" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://x.com/chipi_minull" target="_blank" rel="noopener">X / Twitter</a>
+        <a href="mailto:hello@chipiotto.top">Email</a>
+      </div>
+      <div class="p-footer__col">
+        <p class="p-footer__col-ttl">STACK</p>
+        <span>Node.js · 零依赖</span>
+        <span>自建 · 无 CDN</span>
+        <span>字体：JetBrains Mono</span>
+      </div>
+      <div class="p-footer__col">
+        <p class="p-footer__col-ttl">STATUS</p>
+        <span id="footStatus">—</span>
+        <span class="num"><span id="footVisits">—</span> VISITS</span>
+        <span class="num"><span id="footDays">—</span> DAYS</span>
+      </div>
+    </div>
+
+    <div class="p-footer__bottom">
+      <span>© 2026 MINULL</span>
+      <span>由 Minull 和巧克力维护 · 本站不收集任何个人信息</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 图集灯箱 -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片查看" aria-hidden="true">
+  <button class="lightbox__close" type="button" id="lbClose" aria-label="关闭">✕</button>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" id="lbPrev" aria-label="上一张">←</button>
+  <figure class="lightbox__fig">
+    <img class="lightbox__img" id="lbImg" alt="">
+    <figcaption class="lightbox__cap" id="lbCap"></figcaption>
+  </figure>
+  <button class="lightbox__nav lightbox__nav--next" type="button" id="lbNext" aria-label="下一张">→</button>
+</div>
+
+<script src="js/main.js?v=5" defer></script>
+</body>
+</html>
